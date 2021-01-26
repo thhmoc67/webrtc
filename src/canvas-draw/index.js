@@ -106,12 +106,6 @@ function CanvasDraw() {
 
     //capture stream from canvas
 
-    var localStream = canvas.captureStream(25);
-    if (localStream) {
-      let localStreamVideo = document.querySelector("video#localCanvastream");
-      localStreamVideo.srcObject = localStream;
-    }
-
     //get audio with getUserMedia
 
     navigator.mediaDevices
@@ -125,6 +119,14 @@ function CanvasDraw() {
           video.play();
         };
 
+        var localStream = canvas.captureStream(25);
+        // localStream.addTrack(stream.getAudioTracks()[0]);
+        if (localStream) {
+          let localStreamVideo = document.querySelector(
+            "video#localCanvastream"
+          );
+          localStreamVideo.srcObject = localStream;
+        }
         //initialize the webRTCAdaptor with the localStream created.
 
         //initWebRTCAdaptor method is implemented below
@@ -150,7 +152,7 @@ function CanvasDraw() {
         id={"canvas-draw"}
         width={"400"}
         height={"400"}
-        style={{ border: "1px solid #eee" }}
+        style={{ border: "1px solid #eee", background: "#fff" }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -166,8 +168,7 @@ function CanvasDraw() {
       <video
         id="localCanvastream"
         autoPlay
-        muted
-        controls={false}
+        controls
         playsInline
       ></video>
     </div>
