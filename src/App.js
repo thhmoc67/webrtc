@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./Home ";
+import CanvasDraw from "./canvas-draw";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/draw">Draw</Link>
               </li>
               <li>
                 <Link to="/users">Users</Link>
@@ -23,6 +24,7 @@ function App() {
 
           <Switch>
             {/* <Route path="/users" />  */}
+            <Route path="/draw" component={CanvasDraw} />
             <Route path="/" component={Home} />
           </Switch>
         </div>
